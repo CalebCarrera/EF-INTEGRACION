@@ -61,67 +61,73 @@ function MantPlatillos() {
     }
     return (
       <section className="content">
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="view-header">
-                <div className="header-icon">
-                  <i className="pe page-header-icon pe-7s-menu"></i>
-                </div>
-                <div className="header-title">
-                  <h3>Mantenimiento Plato</h3>
-                  <small>Listado de platos.</small>
-                </div>
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-lg-12">
+            <div className="view-header">
+              <div className="header-icon">
+                <i className="pe page-header-icon pe-7s-menu"></i>
               </div>
-              <hr />
+              <div className="header-title">
+                <h3>Mantenimiento Plato</h3>
+                <small>Listado de platos.</small>
+              </div>
             </div>
+            <hr />
           </div>
-          <div className="row">
-            <div className="col-md-12">
-              <div className="panel panel-filled">
-                <Link className="btn btn-success" to="/crearPlato">Crear</Link>
-                <div className="panel-body">
-                  <div className="table-responsive">
-                    <table className="table table-hover table-striped">
-                      <thead>
-                        <tr>
-                          <th>Nombre</th>
-                          <th>Ingredientes</th>
-                          <th>Precio</th>
-                          <th>Acciones</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {data.map((plato) => {
-                          return (
-                            <tr key={plato._id}>
-                              <td>{plato.nombre}</td>
-                              <td>
-                                {plato.ingredientes.map((ingrediente, index) => (
-                                  <span key={index}>
-                                    {ingrediente}{index < plato.ingredientes.length - 1 ? ', ' : ''}
-                                  </span>
-                                ))}
-                              </td>
-                              <td>{`S/. ${plato.precio.toFixed(2)}`}</td>
-                              <td>
-                                <Link className="btn btn-warning" to={`/editarPlato/${plato._id}`}>Editar</Link>
-                                <button className="btn btn-danger" onClick={() => manejarEliminar(plato._id)}>
-                                  Eliminar
-                                </button>
-                              </td>
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
+        </div>
+    
+        <div className="row">
+          <div className="col-md-12">
+            <div className="panel panel-filled">
+              <Link className="btn btn-success mb-3" to="/crearPlato">
+                Crear
+              </Link>
+              <div className="panel-body">
+                <div className="table-responsive">
+                  <table className="table table-hover table-bordered table-striped table-sm">
+                    <thead className="thead-dark">
+                      <tr>
+                        <th>Nombre</th>
+                        <th>Ingredientes</th>
+                        <th>Precio</th>
+                        <th>Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {data.map((plato) => {
+                        return (
+                          <tr key={plato._id}>
+                            <td>{plato.nombre}</td>
+                            <td>
+                              {plato.ingredientes.map((ingrediente, index) => (
+                                <span key={index}>
+                                  {ingrediente}
+                                  {index < plato.ingredientes.length - 1 ? ', ' : ''}
+                                </span>
+                              ))}
+                            </td>
+                            <td>{`S/. ${plato.precio.toFixed(2)}`}</td>
+                            <td>
+                              <Link className="btn btn-warning btn-sm" to={`/editarPlato/${plato._id}`}>
+                                Editar
+                              </Link>
+                              <button className="btn btn-danger btn-sm ml-2" onClick={() => manejarEliminar(plato._id)}>
+                                Eliminar
+                              </button>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
     )
   }
 

@@ -1,10 +1,17 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Navigation() {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const navigate = useNavigate();
 
   const toggleCollapse = () => setIsCollapsed(!isCollapsed);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    navigate('/login');
+  };
 
   return (
     <aside className="navigation">
@@ -33,6 +40,12 @@ function Navigation() {
           </li>
         </ul>
       </nav>
+      <button 
+        className="btn btn-danger navbar-btn" 
+        onClick={handleLogout}
+      >
+        Logout
+      </button>
     </aside>
   );
 }

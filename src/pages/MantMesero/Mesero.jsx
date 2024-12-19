@@ -59,67 +59,79 @@ function MantMeseros() {
     }
     return (
       <section className="content">
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="view-header">
-                <div className="pull-right text-right" style={{ lineHeight: "14px" }}>
-                  <small>Mantenimiento Meseros <span className="c-white"></span></small>
-                </div>
-                <div className="header-icon">
-                  <i className="pe page-header-icon pe-7s-menu"></i>
-                </div>
-                <div className="header-title">
-                  <h3>Mantenimiento Meseros</h3>
-                  <small>Listado de meseros.</small>
-                </div>
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-lg-12">
+            <div className="view-header">
+              <div className="pull-right text-right" style={{ lineHeight: "14px" }}>
+                <small>Mantenimiento Meseros <span className="c-white"></span></small>
               </div>
-              <hr />
+              <div className="header-icon">
+                <i className="pe page-header-icon pe-7s-menu"></i>
+              </div>
+              <div className="header-title">
+                <h3>Mantenimiento Meseros</h3>
+                <small>Listado de meseros</small>
+              </div>
             </div>
+            <hr />
           </div>
-
-          <div className="row">
-            <div className="col-md-12">
-              <div className="panel panel-filled">
-                <Link className="btn btn-success" to="/crearMesero">Crear</Link>
-                <div className="panel-body">
-                  <div className="table-responsive">
-                    <table className="table table-hover table-striped">
-                      <thead>
-                        <tr>
-                          <th>Nombre</th>
-                          <th>Correo</th>
-                          <th>Telefono</th>
-                          <th>Estado</th>
-                          <th>Acciones</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {data.map((mesero) => {
-                          return (
-                            <tr key={mesero._id}>
-                              <td>{mesero.nombre}</td>
-                              <td>{mesero.correo}</td>
-                              <td>{mesero.telefono}</td>
-                              <td>{mesero.activo? "Activo" : "Inactivo"}</td>
-                              <td>
-                                <Link className="btn btn-warning" to={`/editarMesero/${mesero._id}`}>Editar</Link>
-                                <button className="btn btn-danger" onClick={() => manejarEliminar(mesero._id)}>
+        </div>
+    
+        <div className="row">
+          <div className="col-md-12">
+            <div className="panel panel-filled">
+              <Link className="btn btn-success mb-3" to="/crearMesero">
+                Crear
+              </Link>
+              <div className="panel-body">
+                <div className="table-responsive">
+                  <table className="table table-hover table-bordered table-striped table-sm">
+                    <thead className="thead-dark">
+                      <tr>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Telefono</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {data.map((mesero) => {
+                        return (
+                          <tr key={mesero._id}>
+                            <td>{mesero.nombre}</td>
+                            <td>{mesero.correo}</td>
+                            <td>{mesero.telefono}</td>
+                            <td>{mesero.activo ? "Activo" : "Inactivo"}</td>
+                            <td>
+                              <div className="btn-group">
+                                <Link
+                                  className="btn btn-warning btn-sm"
+                                  to={`/editarMesero/${mesero._id}`}
+                                >
+                                  Editar
+                                </Link>
+                                <button
+                                  className="btn btn-danger btn-sm ml-2"
+                                  onClick={() => manejarEliminar(mesero._id)}
+                                >
                                   Eliminar
                                 </button>
-                              </td>
-                            </tr>
-                          )
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
+                              </div>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
     )
   }
 
